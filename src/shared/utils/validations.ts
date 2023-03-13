@@ -5,6 +5,7 @@ const passwordRegExp =
 
 export const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email Required'),
+  Blood: Yup.string().required('Blood Group Required'),
   password: Yup.string()
     .required('Password Required')
     .min(6, 'Password too Short')

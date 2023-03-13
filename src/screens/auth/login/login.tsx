@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   Pressable,
+  Alert,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {ROUTES} from '../../../shared/utils/routes';
 import {ScrollView} from 'react-native-gesture-handler';
-// import auth, { firebase } from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 
 const loginValidationSchema = yup.object().shape({
   email: yup
@@ -26,40 +27,60 @@ const loginValidationSchema = yup.object().shape({
 });
 
 const Login = ({navigation}: any) => {
+  const showAlert = () => {
+    Alert.alert(
+      'Email Not Verified',
+      'Please Check your Email & verify your email Thanks !',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ]
+    );
+  }
+  
+  const NoRecord = () => {
+    Alert.alert(
+      'Account not Found',
+      'Please Create an account !',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ]
+    );
+  }
  
-  // const UserLogin = (value:any) => {
-  // firebase.auth().signInWithEmailAndPassword(value.email, value.password)
-  // .then((userCredential) => {
-  //   // User logged in successfully
-  //   const user = userCredential.user;
-  //   if (user.emailVerified) {
-  //     // Email is verified, log in the user
-  //     navigation.navigate(ROUTES.Home_Screen);
-  //   } else {
-  //     // Email is not verified, show an error message
-  //     console.error("Email is not verified");
-  //   }
-  // })
-  // .catch((error) => {
-  //   // Error occurred while logging in user
-  //   console.error(error);
-  // });
-
-  // };
+  const UserLogin = (value:any) => {
+    firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+    .then((userCredential) => {
+      // User logged in successfully
+      const user = userCredential.user;
+      if (user.emailVerified) {
+        // Email is verified, log in the user
+        navigation.navigate(ROUTES.Home_Screen);
+      } else {
+        // Email is not verified, show an error message
+       showAlert()
+      }
+    })
+    .catch((error) => {
+      // Error occurred while logging in user
+      NoRecord()
+    });
+  
+    };
+  
 
   return (
     <Formik
       validationSchema={loginValidationSchema}
       initialValues={{email: '', password: ''}}
       onSubmit={val => {
-        // UserLogin(val);
+        UserLogin(val);
       }}>
       {({handleChange, handleSubmit, values, errors, isValid}) => (
         <>
           <ScrollView>
             <View style={styles.mainContainer}>
               <Text style={styles.title}>LOGIN</Text>
-              <Text style={styles.recordbook}>FYP</Text>
+              <Text style={styles.recordbook}>lifeline</Text>
 
               <View style={{paddingTop: 60}}>
                 <View>
@@ -96,8 +117,8 @@ const Login = ({navigation}: any) => {
 
                 <Pressable
                   style={[styles.Signup]}
-                  onPress={navigation.navigate(ROUTES.Home_Screen)}
-                  // onPress={handleSubmit}
+                  // onPress={navigation.navigate(ROUTES.Home_Screen)}
+                  onPress={handleSubmit}
                   disabled={!isValid}>
                   <Text style={[styles.text, {color: 'white'}]}>Sign in </Text>
                 </Pressable>

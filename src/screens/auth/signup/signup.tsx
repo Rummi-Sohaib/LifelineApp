@@ -1,4 +1,5 @@
 import {
+  Alert,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,38 +13,56 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import { RegisterSchema } from '../../../shared/utils/validations';
 import { ROUTES } from '../../../shared/utils/routes';
+import { firebase } from '@react-native-firebase/auth';
 
 const Signup = ({navigation}:any) => {
+  const showAlert = () => {
+    Alert.alert(
+      'Verification Email sent',
+      'Please Check your Email & After verify email you can login !',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ]
+    );
+  }
+  const ErrorOcurred = () => {
+    Alert.alert(
+      'Try later',
+      'Email already used or internet issue',
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ]
+    );
+  }
 
-
-// const RegisterUser = (value:any)=>{
+const RegisterUser = (value:any)=>{
   
-//   firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-//   .then((userCredential) => {
-//     // User registered successfully
-//     const user = userCredential.user;
-//     // Send email verification to the user
-//     user.sendEmailVerification().then(() => {
-//       navigation.navigate(ROUTES.LOGIN);
-//       // Email verification sent successfully
-//       console.log("Email verification sent successfully");
+  firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+  .then((userCredential) => {
+    // User registered successfully
+    const user = userCredential.user;
+    // Send email verification to the user
+    user.sendEmailVerification().then(() => {
+      navigation.navigate(ROUTES.Login_Screen);
+      // Email verification sent successfully
+      showAlert()
      
-//     }).catch((error) => {
-//       // Error occurred while sending email verification
-//       console.error(error);
-//     });
-//   })
-//   .catch((error) => {
-//     // Error occurred while registering user
-//     console.error(error);
-//   });
-// }
+    }).catch((error) => {
+      // Error occurred while sending email verification
+      console.error(error);
+    });
+  })
+  .catch((error) => {
+    // Error occurred while registering user
+    ErrorOcurred()
+  });
+}
   return (
     <Formik
       validationSchema={RegisterSchema}
-      initialValues={{email: '', password: '',name:'',ConfirmPassword:''}}
+      initialValues={{email: '', password: '',name:'',Blood:'',ConfirmPassword:''}}
       onSubmit={ (val) => {
-        // RegisterUser(val);
+        RegisterUser(val);
         
         
 
@@ -80,6 +99,17 @@ const Signup = ({navigation}:any) => {
                 {errors.email && (
                     <Text style={{fontSize: 10, color: 'red'}}>
                       {errors.email}
+                    </Text>
+                  )}
+              </View>
+              <View>
+                <Text style={styles.title}>Blood Group</Text>
+                <TextInput style={styles.input} placeholder="Blood Group" 
+                  onChangeText={handleChange('Blood')}
+                  />
+                {errors.Blood && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.Blood}
                     </Text>
                   )}
               </View>

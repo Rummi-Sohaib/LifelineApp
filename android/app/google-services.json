@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352795141972",
+    "project_id": "lifeline-84ccd",
+    "storage_bucket": "lifeline-84ccd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352795141972:android:e29561908e624fbd2acac1",
+        "android_client_info": {
+          "package_name": "com.fyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352795141972-a1c8rr1po7q3jljq4782bmqpess20fvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADe2GMWfMtDuD0xKOTRxjc7cWhXhgFxmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352795141972-a1c8rr1po7q3jljq4782bmqpess20fvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
