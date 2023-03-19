@@ -7,5 +7,6 @@ export const ROUTES = {
   Otp_Screen:'Otp',
   Home_Screen:'Home',
   MainStack_Screen:'MainStack',
+  Forgot_Screen:'Forgot',
 
 };

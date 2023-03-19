@@ -122,6 +122,9 @@ const Login = ({navigation}: any) => {
                   disabled={!isValid}>
                   <Text style={[styles.text, {color: 'white'}]}>Sign in </Text>
                 </Pressable>
+                <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.Forgot_Screen)}>
+                  <Text style={[styles.text, { color: '#9E1616',fontSize:15,marginTop:-10}]}>forgot Password ? </Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.register]}
                   onPress={() => navigation.navigate(ROUTES.Signup_Screen)}>
