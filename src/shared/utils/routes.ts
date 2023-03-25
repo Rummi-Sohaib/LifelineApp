@@ -8,5 +8,10 @@ export const ROUTES = {
   Home_Screen:'Home',
   MainStack_Screen:'MainStack',
   Forgot_Screen:'Forgot',
+  Header_Screen:'Header',
+  EditProfile_Screen:'EditProfile',
+  Notifications_Screen:'Notifications',
+  Location_Screen:'Location',
+  Message_Screen:'Message',
 
 };

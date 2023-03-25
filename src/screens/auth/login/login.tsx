@@ -79,7 +79,7 @@ const Login = ({navigation}: any) => {
         <>
           <ScrollView>
             <View style={styles.mainContainer}>
-              <Text style={styles.title}>LOGIN</Text>
+              <Text style={styles.title}>welcome to</Text>
               <Text style={styles.recordbook}>lifeline</Text>
 
               <View style={{paddingTop: 60}}>
