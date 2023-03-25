@@ -7,7 +7,6 @@ import Routes from './src/routes';
 import 'react-native-gesture-handler';
 import SplashScreen from "react-native-splash-screen";
 
-
 const App = () => {
 
   useEffect(() => {
