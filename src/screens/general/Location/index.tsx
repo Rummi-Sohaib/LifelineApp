@@ -71,7 +71,7 @@ const Location = () => {
         longitudeDelta: 0.1
       }}
     >
- 
+  <Marker coordinate={{latitude: 32.20501957557687, longitude: 74.1925160393739}} />
     </MapView>
   
       <View
