@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, Button, PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import Header from '../Header';
+import MapView, { Marker, Polyline } from "react-native-maps";
+import { decode } from "@mapbox/polyline";
+import { getDistance, } from 'geolib';
+
+
 // Function to get permission for location
 const requestLocationPermission = async () => {
   try {
@@ -28,6 +33,7 @@ const requestLocationPermission = async () => {
   }
 };
 const Location = () => {
+
   // state to hold location
   const [location, setLocation] = useState(false);
   // function to check permissions and get Location
@@ -56,6 +62,18 @@ const Location = () => {
     <>
     <Header/>
     <View style={styles.container}>
+    <MapView
+      style={{ flex: 1 }}
+      initialRegion={{
+        latitude: 32.20501957557687,
+        longitude: 74.1925160393739,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1
+      }}
+    >
+ 
+    </MapView>
+  
       <View
         style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
         <Button title="Get Location" onPress={getLocation} />
@@ -74,9 +92,9 @@ export default Location;
 const styles = StyleSheet.create({
   container: {
     flex: 1, //the container will fill the whole screen.
-    justifyContent: 'center',
+    // justifyContent: 'center',
     backgroundColor: '#fff',
-    alignItems: "center",
+    // alignItems: "center",
   },
 
   
