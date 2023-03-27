@@ -6,7 +6,7 @@ const Message = () => {
     <>
    <Header/>
     <View>
-      <Text>Message screen</Text>
+      {/* <Text>Message screen</Text> */}
     </View>
     </>
   )
