@@ -19,7 +19,7 @@ const Header = () => {
       <Image source={require('../../../assets/images/User.png')} style={styles.icon} />
       </Pressable>
       <Pressable onPress={()=>navigation.navigate(ROUTES.Notifications_Screen)}>
-      <Image source={require('../../../assets/images/Notification.png')} style={styles.icon} />
+      <Image source={require('../../../assets/images/notification.png')} style={styles.icon} />
       </Pressable>   
       <Pressable onPress={()=>navigation.navigate(ROUTES.Message_Screen)}>
       <Image source={require('../../../assets/images/Message.png')} style={styles.icon} />

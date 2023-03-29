@@ -8,22 +8,22 @@ const Notifications = ({navigation}:any) => {
   
     const data=[
         {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },   {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },   {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },   {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },   {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },   {
-            img:require('../../../assets/images/Notification.png'),
+            img:require('../../../assets/images/notification.png'),
             name:"Dear User Ali Raza posted on urgent blood needed in GHQ Hospital Gujranwala",
         },  
     ]
@@ -79,6 +79,9 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
          borderBottomColor: '#C4C4C4'
          
+      },
+      container:{
+
       },
       txt:{flexDirection:'row',alignItems:'center',flex:1,fontSize:20,fontWeight:'600',color:'black'},
       txt1:{flexDirection:'row',alignItems:'center',flex:1,fontSize:12,fontWeight:'400',color:'#7A7A7A'},
