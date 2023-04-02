@@ -37,34 +37,41 @@ const Signup = ({navigation}:any) => {
     );
   }
 
-const RegisterUser = (value:any)=>{
+  const RegisterUser = (value: any) => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(value.email, value.password)
+      .then((userCredential) => {
+        // User registered successfully
+        const user = userCredential.user;
+        // Send email verification to the user
+        user.sendEmailVerification()
+          .then(() => {
+            showAlert();
+          })
+          .catch((error) => {
+            // Error occurred while sending email verification
+            console.error(error);
+          });
+      })
+      .then(() => {
+        // Wait for email verification to be sent before adding user data to Firestore
+        return firestore().collection('users').add({
+          name: value.name,
+          email: value.email,
+          Blood_Group: value.Blood,
+        });
+      })
+      .then(() => {
+        // User data added to Firestore successfully
+        navigation.navigate(ROUTES.Login_Screen);
+      })
+      .catch((error) => {
+        // Error occurred while registering user
+        ErrorOcurred();
+      });
+  };
   
-  firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-  .then((userCredential) => {
-    // User registered successfully
-    const user = userCredential.user;
-    firestore()
-    .collection('users')
-    .add({
-      name: value.name,
-      email: value.email,
-      Blood_Group :value.Blood,
-    })
-    // Send email verification to the user
-    user.sendEmailVerification().then(() => {
-      navigation.navigate(ROUTES.Login_Screen);
-      showAlert()
-     
-    }).catch((error) => {
-      // Error occurred while sending email verification
-      console.error(error);
-    });
-  })
-  .catch((error) => {
-    // Error occurred while registering user
-    ErrorOcurred()
-  });
-}
   return (
     <Formik
       validationSchema={RegisterSchema}
