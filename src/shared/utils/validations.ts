@@ -40,6 +40,7 @@ export const ForgotPasswordSchema = Yup.object().shape({
 export const RegisterSchema=Yup.object().shape({
   name:Yup.string().required("Name Required"),
   email: Yup.string().email('Invalid Email').required('Email Required'),
+  Blood: Yup.string().required('Blood Group Required'),
   password: Yup.string()
     .required('Password Required')
     .min(8, 'Password too Short'),

@@ -14,8 +14,10 @@ import * as yup from 'yup';
 import { RegisterSchema } from '../../../shared/utils/validations';
 import { ROUTES } from '../../../shared/utils/routes';
 import { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const Signup = ({navigation}:any) => {
+  // const usersCollection = firestore().collection('Users');
   const showAlert = () => {
     Alert.alert(
       'Verification Email sent',
@@ -41,10 +43,16 @@ const RegisterUser = (value:any)=>{
   .then((userCredential) => {
     // User registered successfully
     const user = userCredential.user;
+    firestore()
+    .collection('users')
+    .add({
+      name: value.name,
+      email: value.email,
+      Blood_Group :value.Blood,
+    })
     // Send email verification to the user
     user.sendEmailVerification().then(() => {
       navigation.navigate(ROUTES.Login_Screen);
-      // Email verification sent successfully
       showAlert()
      
     }).catch((error) => {
@@ -63,8 +71,6 @@ const RegisterUser = (value:any)=>{
       initialValues={{email: '', password: '',name:'',Blood:'',ConfirmPassword:''}}
       onSubmit={ (val) => {
         RegisterUser(val);
-        
-        
 
       }}>
       {({handleChange, handleBlur, handleSubmit, values, errors, isValid}) => (
@@ -80,7 +86,7 @@ const RegisterUser = (value:any)=>{
             <View style={{padding: 26}}>
               <View>
                 <Text style={styles.title}>Name</Text>
-                <TextInput style={styles.input} placeholder="Name"
+                <TextInput style={styles.input} placeholder="Name" placeholderTextColor={'gray'}
                 onChangeText={handleChange('name')} 
                 />
                
@@ -93,7 +99,7 @@ const RegisterUser = (value:any)=>{
 
               <View>
                 <Text style={styles.title}>Email</Text>
-                <TextInput style={styles.input} placeholder="Enter Email" 
+                <TextInput style={styles.input} placeholder="Enter Email"  placeholderTextColor={'gray'}
                   onChangeText={handleChange('email')}
                   />
                 {errors.email && (
@@ -103,9 +109,11 @@ const RegisterUser = (value:any)=>{
                   )}
               </View>
               <View>
-                <Text style={styles.title}>Blood Group</Text>
-                <TextInput style={styles.input} placeholder="Blood Group" 
+                <Text style={[styles.title,{color:'red'}]}>Blood Group</Text>
+                <TextInput style={styles.input} placeholder="Blood Group"  placeholderTextColor={'gray'}
                   onChangeText={handleChange('Blood')}
+                  autoCapitalize='characters'
+                  maxLength={3}
                   />
                 {errors.Blood && (
                     <Text style={{fontSize: 10, color: 'red'}}>
@@ -118,6 +126,7 @@ const RegisterUser = (value:any)=>{
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
+                  placeholderTextColor={'gray'}
                   secureTextEntry={true}
                   onChangeText={handleChange('password')}
                 />
@@ -133,6 +142,7 @@ const RegisterUser = (value:any)=>{
                 <TextInput
                   style={styles.input}
                   placeholder="Retype-Password"
+                  placeholderTextColor={'gray'}
                   secureTextEntry={true}
                   onChangeText={handleChange('ConfirmPassword')}
                 />
@@ -183,12 +193,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     paddingTop: 15,
+    color:'black',
     lineHeight: 27,
     alignSelf: 'flex-start',
   },
   input: {
     flexDirection: 'row',
     backgroundColor: '#EEF2F5',
+    color:'black',
     borderRadius: 15,
     marginTop: 10,
     paddingHorizontal: 30,
