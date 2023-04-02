@@ -85,15 +85,15 @@ const Signup = ({navigation}:any) => {
           <ScrollView style={styles.container}>
             <View style={styles.viewmain}>
               <View>
-                <Text style={styles.heading}>Create an Account</Text>
+                <Text style={styles.heading}>Sign Up</Text>
               </View>
             </View>
             {/* lOGIN NAME & EMAIL */}
 
             <View style={{padding: 26}}>
               <View>
-                <Text style={styles.title}>Name</Text>
-                <TextInput style={styles.input} placeholder="Name" placeholderTextColor={'gray'}
+                {/* <Text style={styles.title}>Name</Text> */}
+                <TextInput style={styles.input} placeholder="Name" placeholderTextColor={'#FE0606'}
                 onChangeText={handleChange('name')} 
                 />
                
@@ -105,8 +105,8 @@ const Signup = ({navigation}:any) => {
               </View>
 
               <View>
-                <Text style={styles.title}>Email</Text>
-                <TextInput style={styles.input} placeholder="Enter Email"  placeholderTextColor={'gray'}
+                {/* <Text style={styles.title}>Email</Text> */}
+                <TextInput style={styles.input} placeholder="Enter Email"  placeholderTextColor={'#FE0606'}
                   onChangeText={handleChange('email')}
                   />
                 {errors.email && (
@@ -116,8 +116,8 @@ const Signup = ({navigation}:any) => {
                   )}
               </View>
               <View>
-                <Text style={[styles.title,{color:'red'}]}>Blood Group</Text>
-                <TextInput style={styles.input} placeholder="Blood Group"  placeholderTextColor={'gray'}
+                {/* <Text style={[styles.title,{color:'red'}]}>Blood Group</Text> */}
+                <TextInput style={styles.input} placeholder="Blood Group"  placeholderTextColor={'#FE0606'}
                   onChangeText={handleChange('Blood')}
                   autoCapitalize='characters'
                   maxLength={3}
@@ -129,11 +129,11 @@ const Signup = ({navigation}:any) => {
                   )}
               </View>
               <View>
-                <Text style={styles.title}>Password</Text>
+                {/* <Text style={styles.title}>Password</Text> */}
                 <TextInput
                   style={styles.input}
                   placeholder="Password"
-                  placeholderTextColor={'gray'}
+                  placeholderTextColor={'#FE0606'}
                   secureTextEntry={true}
                   onChangeText={handleChange('password')}
                 />
@@ -145,11 +145,11 @@ const Signup = ({navigation}:any) => {
               </View>
 
               <View>
-                <Text style={styles.title}>Retype-Password</Text>
+                {/* <Text style={styles.title}>Retype-Password</Text> */}
                 <TextInput
                   style={styles.input}
                   placeholder="Retype-Password"
-                  placeholderTextColor={'gray'}
+                  placeholderTextColor={'#FE0606'}
                   secureTextEntry={true}
                   onChangeText={handleChange('ConfirmPassword')}
                 />
@@ -164,7 +164,7 @@ const Signup = ({navigation}:any) => {
                 <TouchableOpacity style={styles.touch}
                 onPress={handleSubmit}
                 >
-                  <Text style={styles.submit}>Register </Text>
+                  <Text style={styles.submit}>Submit </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -190,10 +190,11 @@ const styles = StyleSheet.create({
   heading: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    fontSize: 25,
+    fontSize: 40,
+    marginTop:20,
     lineHeight: 40,
     marginBottom: 10,
-    color: 'black',
+    color: '#FE4444',
   },
   title: {
     fontFamily: 'Poppins',
@@ -205,25 +206,40 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   input: {
-    flexDirection: 'row',
-    backgroundColor: '#EEF2F5',
-    color:'black',
-    borderRadius: 15,
-    marginTop: 10,
-    paddingHorizontal: 30,
+    color: 'black',
+    height: 56,
+    width: 306,
+    borderRadius: 10,
+    marginBottom: 20,
+    backgroundColor: 'white',
+    shadowColor: '#FE4444',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    alignSelf: 'center',
+    paddingLeft: 20,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   submit: {
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 36,
     fontWeight: 'bold',
     lineHeight: 50,
     color: '#EEF2F5',
     borderRadius: 15,
   },
   touch: {
-    backgroundColor: '#090909',
+    backgroundColor: '#FE3D3D',
     borderRadius: 15,
     marginTop: 30,
+    height:70,
+    width:272,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf:'center',
   },
 });
 function alert(arg0: string) {

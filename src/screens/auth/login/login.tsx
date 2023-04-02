@@ -79,7 +79,7 @@ const Login = ({navigation}: any) => {
         <>
           <ScrollView>
             <View style={styles.mainContainer}>
-              <Text style={styles.title}>welcome to</Text>
+              <Text style={styles.title}>Log in</Text>
               <Text style={styles.recordbook}>lifeline</Text>
 
               <View style={{paddingTop: 60}}>
@@ -93,7 +93,8 @@ const Login = ({navigation}: any) => {
                     style={styles.input}
                     placeholder="Email"
                     textAlign={'left'}
-                    placeholderTextColor={'#090909'}
+                    placeholderTextColor={'#FE4444'}
+                    
                     value={values.email}
                     onChangeText={handleChange('email')}
                   />
@@ -108,28 +109,27 @@ const Login = ({navigation}: any) => {
                     style={styles.input}
                     textAlign={'left'}
                     placeholder="Password"
-                    placeholderTextColor={'#090909'}
+                    placeholderTextColor={'#FE4444'}
                     secureTextEntry={true}
                     value={values.password}
                     onChangeText={handleChange('password')}
                   />
                 </View>
-
+                <TouchableOpacity style={styles.forgot} onPress={()=>navigation.navigate(ROUTES.Forgot_Screen)}>
+                  <Text style={[styles.text, { color: 'white',fontSize:18,marginTop:-10,}]}>forgot Password </Text>
+                </TouchableOpacity>
                 <Pressable
                   style={[styles.Signup]}
-                  // onPress={navigation.navigate(ROUTES.Home_Screen)}
                   onPress={handleSubmit}
                   disabled={!isValid}>
                   <Text style={[styles.text, {color: 'white'}]}>Sign in </Text>
                 </Pressable>
-                <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.Forgot_Screen)}>
-                  <Text style={[styles.text, { color: '#9E1616',fontSize:15,marginTop:-10}]}>forgot Password ? </Text>
-                </TouchableOpacity>
+              
                 <TouchableOpacity
                   style={[styles.register]}
                   onPress={() => navigation.navigate(ROUTES.Signup_Screen)}>
                   <Text
-                    style={[styles.reg, {color: 'black', fontWeight: 'bold'}]}>
+                    style={[styles.reg, {color: '#E54646', fontWeight: 'bold'}]}>
                     Register ?
                   </Text>
                 </TouchableOpacity>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: 'black',
+    color: '#FE4444',
     fontSize: 43,
     paddingTop: '20%',
     lineHeight: 43,
@@ -159,19 +159,23 @@ const styles = StyleSheet.create({
     color: '#4a4a4a',
   },
   Signup: {
-    height: 56,
-    width: 306,
+    height: 72,
+    width: 270,
     borderRadius: 28,
-    backgroundColor: 'black',
+    backgroundColor: '#FE3D3D',
     opacity: 1,
     shadowColor: 'white',
     shadowOffset: {
       width: 0,
       height: 2,
     },
+    marginTop:20,
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    alignSelf:'center',
+    paddingLeft:20,
+    justifyContent:'center',
   },
   register: {
     alignSelf: 'center',
@@ -179,8 +183,16 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     shadowColor: 'white',
   },
+  forgot:{
+height:40,
+width:235,
+backgroundColor:'#E54646',
+borderRadius:10,
+alignItems:'center',
+alignSelf:'flex-end',
+  },
   recordbook: {
-    color: '#9E1616',
+    color: '#E54646',
     fontSize: 43,
     paddingTop: '10%',
     lineHeight: 43,
@@ -189,7 +201,7 @@ const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
     lineHeight: 20,
-    fontSize: 20,
+    fontSize: 36,
     color: 'black',
     paddingTop: 21,
   },
@@ -213,10 +225,10 @@ const styles = StyleSheet.create({
     color: 'black',
     height: 56,
     width: 306,
-    borderRadius: 28,
+    borderRadius: 10,
     marginBottom: 20,
     backgroundColor: 'white',
-    shadowColor: 'black',
+    shadowColor: '#FE4444',
     shadowOffset: {
       width: 0,
       height: 2,

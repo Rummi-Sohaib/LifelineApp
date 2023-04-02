@@ -36,16 +36,17 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#fff',
+        backgroundColor: '#FE3D3D',
         paddingHorizontal: 20,
-        height: 50,
+        height: 80,
         width: width,
-        borderBottomWidth:1,
+       
 
         
       },
       icon: {
-        width: 24,
-        height: 24,
+        tintColor:'white',
+        width: 33,
+        height: 37,
       },
 })
