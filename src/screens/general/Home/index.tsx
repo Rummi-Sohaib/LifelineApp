@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Pressable } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import Header from '../Header';
+import { ROUTES } from '../../../shared/utils/routes';
+import { useNavigation } from '@react-navigation/native';
 const Home = () => {
-
+const navigation:any =useNavigation()
 
   return (
     <> 
@@ -12,16 +14,21 @@ const Home = () => {
      <View style={styles.main}>
      <View style={{flexDirection:'column'}}>
       
+     <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.EditProfile_Screen)}>
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> Click to Edit</Text>
+      </TouchableOpacity>
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> Name</Text>
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> About</Text>
       <View style={{flexDirection:'row',marginTop:50}}>
     <Image source={require('../../../assets/images/hand.png')}style={[styles.icon,{height:35,width:35}]} />
+   
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> Lives Saved</Text>
       </View>
       </View>
+      
+      <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.EditProfile_Screen)}>
     <Image source={require('../../../assets/images/pencil.png')}style={[styles.icon,{height:50,width:35}]} />
-   
+    </TouchableOpacity>
       </View>
 
 

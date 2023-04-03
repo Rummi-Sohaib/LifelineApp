@@ -18,6 +18,7 @@ const AuthStack = () => {
   return (
     <>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        
         <Stack.Screen name={ROUTES.Login_Screen} component={Login} />
         <Stack.Screen name={ROUTES.Signup_Screen} component={Signup} />
         <Stack.Screen name={ROUTES.MainStack_Screen} component={MainStack} />

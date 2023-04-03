@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, Button, PermissionsAndroid} from 'react-native';
+import {StyleSheet, View, Text, Button, PermissionsAndroid, ActivityIndicator} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import Header from '../Header';
 import MapView, { Marker, Polyline } from "react-native-maps";
@@ -35,7 +35,10 @@ const requestLocationPermission = async () => {
 const Location = () => {
 
   // state to hold location
-  const [location, setLocation] = useState(false);
+  const [location, setLocation] = useState({});
+  useEffect(()=>{
+    getLocation()
+  },[])
   // function to check permissions and get Location
   const getLocation = () => {
     const result = requestLocationPermission();
@@ -45,12 +48,12 @@ const Location = () => {
         Geolocation.getCurrentPosition(
           position => {
             console.log(position);
-            setLocation(position);
+            setLocation(position.coords);
           },
           error => {
             // See error code charts below.
             console.log(error.code, error.message);
-            setLocation(false);
+            setLocation({});
           },
           {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
         );
@@ -62,24 +65,27 @@ const Location = () => {
     <>
     <Header/>
     <View style={styles.container}>
-    <MapView
+    {location.latitude ? <MapView
       style={{ flex: 1 }}
       initialRegion={{
-        latitude: 32.20501957557687,
-        longitude: 74.1925160393739,
+        latitude: location.latitude,
+        longitude: location.longitude,
         latitudeDelta: 0.1,
         longitudeDelta: 0.1
       }}
     >
-  <Marker coordinate={{latitude: 32.20501957557687, longitude: 74.1925160393739}} />
-    </MapView>
+  <Marker coordinate={{latitude: location.latitude,
+        longitude: location.longitude}} />
+    </MapView>: <View style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+        <ActivityIndicator color={'red'} size='large'/>
+      </View>}
   
-      <View
+      {/* <View
         style={{marginTop: 10, padding: 10, borderRadius: 10, width: '40%'}}>
-        <Button title="Get Location" onPress={getLocation} />
+        <Button title="Get Location" onPress={()=>getLocation()} />
       </View>
-      <Text style={{color:'black',fontSize:15,fontWeight:'bold'}}>Latitude  : {location ? location.coords.latitude : null}</Text>
-      <Text style={{color:'black',fontSize:15,fontWeight:'bold'}}>Longitude  : {location ? location.coords.longitude : null}</Text>
+      <Text style={{color:'black',fontSize:15,fontWeight:'bold'}}>Latitude  : {location ? location.latitude : null}</Text>
+      <Text style={{color:'black',fontSize:15,fontWeight:'bold'}}>Longitude  : {location ? location.longitude : null}</Text> */}
 
     </View>
 

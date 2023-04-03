@@ -44,6 +44,12 @@ const Signup = ({navigation}:any) => {
       .then((userCredential) => {
         // User registered successfully
         const user = userCredential.user;
+        firestore().collection('users').add({
+          uid:userCredential.user.uid,
+          name: value.name,
+          email: value.email,
+          Blood_Group: value.Blood,
+        });
         // Send email verification to the user
         user.sendEmailVerification()
           .then(() => {
@@ -54,14 +60,15 @@ const Signup = ({navigation}:any) => {
             console.error(error);
           });
       })
-      .then(() => {
-        // Wait for email verification to be sent before adding user data to Firestore
-        return firestore().collection('users').add({
-          name: value.name,
-          email: value.email,
-          Blood_Group: value.Blood,
-        });
-      })
+      // .then(() => {
+      //   // Wait for email verification to be sent before adding user data to Firestore
+      //   return firestore().collection('users').add({
+      //     uid:userCredential.user.uid,
+      //     name: value.name,
+      //     email: value.email,
+      //     Blood_Group: value.Blood,
+      //   });
+      // })
       .then(() => {
         // User data added to Firestore successfully
         navigation.navigate(ROUTES.Login_Screen);
