@@ -80,7 +80,7 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/lastbleed.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='mm/yy' placeholderTextColor={'red'} maxLength={5}
-       onChangeText={handleChange('LB')} />
+       onChangeText={handleChange('LB')} inputMode='numeric' />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Last Bleed</Text>
  
       </View>
@@ -104,8 +104,8 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/contact.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='+123456789' placeholderTextColor={'red'} maxLength={5}
-       onChangeText={handleChange('PH')} />
-    <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Phone Number</Text>
+       onChangeText={handleChange('PH')} inputMode='numeric'/>
+    <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}} > Phone Number</Text>
    
       </View>
       {errors.GN && (
