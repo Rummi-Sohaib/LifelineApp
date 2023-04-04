@@ -80,7 +80,7 @@ const Login = ({navigation}: any) => {
           <ScrollView>
             <View style={styles.mainContainer}>
               <Text style={styles.title}>Log in</Text>
-              <Text style={styles.recordbook}>lifeline</Text>
+              <Text style={styles.recordbook}>Lifeline</Text>
 
               <View style={{paddingTop: 60}}>
                 <View>
@@ -159,9 +159,9 @@ const styles = StyleSheet.create({
     color: '#4a4a4a',
   },
   Signup: {
-    height: 72,
-    width: 270,
-    borderRadius: 28,
+    height: 60,
+    width: 180,
+    borderRadius: 15,
     backgroundColor: '#FE3D3D',
     opacity: 1,
     shadowColor: 'white',
@@ -180,12 +180,12 @@ const styles = StyleSheet.create({
   register: {
     alignSelf: 'center',
     width: 100,
-    borderRadius: 28,
+    borderRadius: 15,
     shadowColor: 'white',
   },
   forgot:{
 height:40,
-width:235,
+width:200,
 backgroundColor:'#E54646',
 borderRadius:10,
 alignItems:'center',

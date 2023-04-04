@@ -93,6 +93,7 @@ const Signup = ({navigation}:any) => {
             <View style={styles.viewmain}>
               <View>
                 <Text style={styles.heading}>Sign Up</Text>
+                <Text style={styles.text}>Create an Account</Text>
               </View>
             </View>
             {/* lOGIN NAME & EMAIL */}
@@ -198,11 +199,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins',
     fontWeight: 'bold',
     fontSize: 40,
-    marginTop:20,
+    marginTop:40,
     lineHeight: 40,
     marginBottom: 10,
     color: '#FE4444',
   },
+  text:{
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    textAlign : 'left',
+    color: '#FE4444',
+    fontWeight: 'bold',
+    marginLeft: 80,
+  },
+
   title: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
@@ -234,19 +244,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 36,
     fontWeight: 'bold',
-    lineHeight: 50,
+    lineHeight: 40,
     color: '#EEF2F5',
     borderRadius: 15,
+   
   },
   touch: {
     backgroundColor: '#FE3D3D',
     borderRadius: 15,
     marginTop: 30,
-    height:70,
-    width:272,
+    height:60,
+    width:180,
     alignItems:'center',
     justifyContent:'center',
     alignSelf:'center',
+    shadowColor: '#FE4444',
+    
   },
 });
 function alert(arg0: string) {
