@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Pressable } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import Header from '../Header';
@@ -12,9 +12,7 @@ const EditProfile = () => {
   const [bloodGroup, setBloodGroup] = useState('');
   const [image, setImage] = useState(null);
   const user = auth()
-
-  console.log(user._user.uid,'user')
-  const [data , setData] = useState({BG: '', LB: '',Loc:'',PH:'',GN:''})
+  const FormikRef =useRef<any>()
   useEffect(()=>{
    gertValues()
   },[])
@@ -22,16 +20,17 @@ const EditProfile = () => {
   const gertValues = async ()=>{
     await firestore().collection('Profile').doc(user._user.uid).get().then(r=> {
       let result = r.data()
-      let obj = {BG: result.Blood_Group ?? '', LB: result.Last_Bleed ?? '',Loc: result.Location?? '',PH:result.Phone_Number?? '',GN:result.Gender??''}
-      setData(obj)
+      console.log(result,'rrrrr')
+      FormikRef.current.setFieldValue('BG', result.Blood_Group)
+      FormikRef.current.setFieldValue('LB', result.Last_Bleed)
+      FormikRef.current.setFieldValue('Loc', result.Location)
+      FormikRef.current.setFieldValue('PH', result.Phone_Number)
+      FormikRef.current.setFieldValue('GN', result.Gender)
       })
   }
-     const initialValues = data
+     const initialValues = {BG: '', LB: '',Loc:'',PH:'',GN:''}
 
   const RegisterUser = (value: any) => {
- 
-    
-
         // Wait for email verification to be sent before adding user data to Firestore
          firestore().collection('Profile').doc(user._user.uid).set({
           Blood_Group: value.BG,
@@ -49,6 +48,7 @@ const EditProfile = () => {
     
     <Header/>
     <Formik
+    innerRef={FormikRef}
       validationSchema={PrfileSchema}
       initialValues={initialValues}
       onSubmit={ (val) => {
@@ -66,7 +66,7 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/Heartvector.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='A+' placeholderTextColor={'red'} value={values.BG} maxLength={3}
-       onChangeText={handleChange('BG')} 
+       onChangeText={handleChange('BG')}  value={values.BG}
     />
     {/* <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> A+</Text> */}
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Blood Group</Text>
@@ -80,7 +80,7 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/lastbleed.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='mm/yy' placeholderTextColor={'red'} maxLength={5}
-       onChangeText={handleChange('LB')} inputMode='numeric' />
+       onChangeText={handleChange('LB')} inputMode='numeric' value={values.LB} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Last Bleed</Text>
  
       </View>
@@ -92,7 +92,7 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/locator.png')} style={[styles.icon,{height:50,width:35}]} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='City' placeholderTextColor={'red'} maxLength={10}
-       onChangeText={handleChange('Loc')} />
+       onChangeText={handleChange('Loc')} value={values.Loc} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Location</Text>
    
       </View>
@@ -103,8 +103,8 @@ const EditProfile = () => {
                   )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/contact.png')} style={styles.icon} />
-    <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='+123456789' placeholderTextColor={'red'} maxLength={5}
-       onChangeText={handleChange('PH')} inputMode='numeric'/>
+    <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='+123456789' placeholderTextColor={'red'} maxLength={11}
+       onChangeText={handleChange('PH')} inputMode='numeric' value={values.PH}/>
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}} > Phone Number</Text>
    
       </View>
@@ -116,7 +116,7 @@ const EditProfile = () => {
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/gender.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='Gender' placeholderTextColor={'red'} maxLength={5}
-       onChangeText={handleChange('GN')} />
+       onChangeText={handleChange('GN')}  value={values.GN}/>
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Gender</Text>
   
       </View>
