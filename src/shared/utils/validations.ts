@@ -48,6 +48,17 @@ export const RegisterSchema=Yup.object().shape({
   .required('Password Required')
   .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
+export const PrfileSchema=Yup.object().shape({
+  BG:Yup.string().required(" Required"),
+  LB: Yup.string().required(' Required'),
+  Loc: Yup.string().required(' Required'),
+  PH: Yup.string()
+    .required('Required ')
+    .min(11, 'not valid  phone'), 
+     GN: Yup.string()
+    .required('Required ')
+    .min(4, 'not valid  '),
+});
 
 export const ResetPasswordSchema = Yup.object().shape({
   code:Yup.string().required("Code Required"),

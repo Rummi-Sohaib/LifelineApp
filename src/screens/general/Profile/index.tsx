@@ -5,6 +5,7 @@ import Header from '../Header';
 import { Formik } from 'formik';
 import { firebase } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
+import { PrfileSchema } from '../../../shared/utils/validations';
 import firestore from '@react-native-firebase/firestore';
 const EditProfile = () => {
   const [name, setName] = useState('');
@@ -48,7 +49,7 @@ const EditProfile = () => {
     
     <Header/>
     <Formik
-      // validationSchema={RegisterSchema}
+      validationSchema={PrfileSchema}
       initialValues={initialValues}
       onSubmit={ (val) => {
         RegisterUser(val);
@@ -57,6 +58,11 @@ const EditProfile = () => {
       {({handleChange, handleBlur, handleSubmit, values, errors, isValid}) => (
         console.log(values,'values'),
       <View style={styles.container}>
+         {errors.BG && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.BG}
+                    </Text>
+                  )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/Heartvector.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='A+' placeholderTextColor={'red'} value={values.BG} maxLength={3}
@@ -64,30 +70,55 @@ const EditProfile = () => {
     />
     {/* <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> A+</Text> */}
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Blood Group</Text>
+   
       </View>
+      {errors.LB && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.LB}
+                    </Text>
+                  )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/lastbleed.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='mm/yy' placeholderTextColor={'red'} maxLength={5}
        onChangeText={handleChange('LB')} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Last Bleed</Text>
+ 
       </View>
+      {errors.Loc && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.Loc}
+                    </Text>
+                  )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/locator.png')} style={[styles.icon,{height:50,width:35}]} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='City' placeholderTextColor={'red'} maxLength={10}
        onChangeText={handleChange('Loc')} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Location</Text>
+   
       </View>
+      {errors.PH && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.PH}
+                    </Text>
+                  )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/contact.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='+123456789' placeholderTextColor={'red'} maxLength={5}
        onChangeText={handleChange('PH')} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Phone Number</Text>
+   
       </View>
+      {errors.GN && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.GN}
+                    </Text>
+                  )}
       <View style={styles.inputContainer}>
     <Image source={require('../../../assets/images/gender.png')} style={styles.icon} />
     <TextInput style={{fontSize:15,fontWeight:'700',color:'#FE3D3D'}} placeholder='Gender' placeholderTextColor={'red'} maxLength={5}
        onChangeText={handleChange('GN')} />
     <Text style={{fontSize:18,fontWeight:'700',color:'#FE3D3D'}}> Gender</Text>
+  
       </View>
       <Pressable onPress={handleSubmit}
                   style={[styles.Signup]}>
