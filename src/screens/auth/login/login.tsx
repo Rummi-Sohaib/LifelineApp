@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   Signup: {
     height: 60,
-    width: 180,
+    width: 150,
     borderRadius: 15,
     backgroundColor: '#FE3D3D',
     opacity: 1,
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+  
     marginTop:20,
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -184,13 +185,14 @@ const styles = StyleSheet.create({
     shadowColor: 'white',
   },
   forgot:{
-height:40,
-width:200,
-backgroundColor:'#E54646',
-borderRadius:10,
-alignItems:'center',
-alignSelf:'flex-end',
+  height:40,
+  width:180,
+  backgroundColor:'#E54646',
+  borderRadius:10,
+  alignItems:'center',
+  alignSelf:'flex-end',
   },
+  
   recordbook: {
     color: '#E54646',
     fontSize: 43,

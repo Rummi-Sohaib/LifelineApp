@@ -82,7 +82,7 @@ const Signup = ({navigation}:any) => {
   return (
     <Formik
       validationSchema={RegisterSchema}
-      initialValues={{email: '', password: '',name:'',Blood:'',ConfirmPassword:''}}
+      initialValues={{name:'', email: '', password: '',Blood:'',ConfirmPassword:''}}
       onSubmit={ (val) => {
         RegisterUser(val);
 

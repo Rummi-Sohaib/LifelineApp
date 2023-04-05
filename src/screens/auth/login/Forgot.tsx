@@ -33,7 +33,7 @@ const Forgot = ({navigation}:any) => {
      
 
   const [email, setEmail] = useState('');
-const  handleResetPassword =()=> {
+  const  handleResetPassword =()=> {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
         EmailSent()
@@ -46,6 +46,7 @@ const  handleResetPassword =()=> {
 }
 
   return (
+    
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text style={styles.title}>Forgot Password</Text>
       <View>
@@ -64,7 +65,7 @@ const  handleResetPassword =()=> {
           onPress={handleResetPassword}
           
          >
-        <Text style={[styles.text, {color: 'white'}]}>Forgot Password </Text>
+        <Text style={[styles.button, {color: 'white'}]}>Forgot Password </Text>
       </Pressable>
     </View>
   );
@@ -77,10 +78,10 @@ const styles = StyleSheet.create({
     color: 'black',
     height: 56,
     width: 306,
-    borderRadius: 28,
+    borderRadius: 15,
     marginBottom: 20,
     backgroundColor: 'white',
-    shadowColor: 'black',
+    shadowColor: 'red',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -89,8 +90,8 @@ const styles = StyleSheet.create({
   Signup: {
     height: 50,
     width: 200,
-    borderRadius: 28,
-    backgroundColor: 'black',
+    borderRadius: 15,
+    backgroundColor: '#E54646',
     opacity: 1,
     shadowColor: 'white',
     shadowOffset: {
@@ -101,15 +102,15 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  text: {
+  button: {
     justifyContent: 'center',
     alignSelf: 'center',
     paddingTop: 12,
     fontSize: 20,
-    color: 'black',
+    fontWeight: 'bold'
   },
   title: {
-    color: '#9E1616',
+    color: '#E54646',
     fontSize: 30,
     marginBottom: 20,
     lineHeight: 43,
