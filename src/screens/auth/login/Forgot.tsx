@@ -1,5 +1,7 @@
 import { firebase } from '@react-native-firebase/auth';
 import React, {useState} from 'react';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 import {
   View,
   TextInput,
@@ -10,6 +12,14 @@ import {
   Pressable,
 } from 'react-native';
 import { ROUTES } from '../../../shared/utils/routes';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+const forgotValidationSchema = yup.object().shape({
+  email: yup
+  .string()
+  .email('Enter your Email Adress').
+  required('Email Address is Required'),
+});
 
 const Forgot = ({navigation}:any) => {
     const EmailSent = () => {
@@ -46,7 +56,12 @@ const Forgot = ({navigation}:any) => {
 }
 
   return (
-    
+    <Formik  
+    validationSchema={forgotValidationSchema}
+      initialValues={{email: ''}}
+      onSubmit={val => {
+        Forgot(val);
+      }}>
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text style={styles.title}>Forgot Password</Text>
       <View>
@@ -59,17 +74,20 @@ const Forgot = ({navigation}:any) => {
           onChangeText={setEmail}
         />
       </View>
+      
 
       <Pressable
         style={[styles.Signup]}
-          onPress={handleResetPassword}
-          
-         >
+          onPress={handleResetPassword}>
         <Text style={[styles.button, {color: 'white'}]}>Forgot Password </Text>
       </Pressable>
+
     </View>
+    
+    </Formik>
   );
 };
+
 
 export default Forgot;
 
@@ -107,7 +125,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 12,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold' 
   },
   title: {
     color: '#E54646',

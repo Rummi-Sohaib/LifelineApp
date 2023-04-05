@@ -14,11 +14,11 @@ const navigation:any =useNavigation()
      <View style={styles.main}>
      <View style={{flexDirection:'column'}}>
       
-     <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.EditProfile_Screen)}>
+     {/* <TouchableOpacity onPress={()=>navigation.navigate(ROUTES.EditProfile_Screen)}>
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> Click to Edit</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> Name</Text>
-      <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> About</Text>
+      {/* <Text style={{fontSize:20,fontWeight:'700',color:'#FE3D3D'}}> About</Text> */}
       <View style={{flexDirection:'row',marginTop:50}}>
     <Image source={require('../../../assets/images/hand.png')}style={[styles.icon,{height:35,width:35}]} />
    
